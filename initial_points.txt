@@ -1,3 +1,0 @@
-initial points are frames that we know the value of from the smart tagging
-frames labeled as goal kick, corner kick, free kick, throw ins and kick-off (start and after goal)
-    should be used as initial points.

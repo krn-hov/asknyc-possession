@@ -1,3 +1,0 @@
-all frames that the ball is out of play and not an initial point are restart points.
-it could be because the ball is out of bounds or any referee stoppage or during halftime
-    or before kick off or after the final whistle.

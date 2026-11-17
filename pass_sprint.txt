@@ -1,6 +1,0 @@
-the aim is to determine which frames belong to a completed pass or sprinting player.
-since in either of these cases the ball may exit the proximity zone of the team with possession.
-first thing is to run the control function for every unassigned frame (not an initial point or restart)
-if there are gaps that are sandwiched between 2 possessions of the same team then we use
-    the ball velocity wherever available, as well as the distance the ball traveled to determine if it is a pass or a sprint.
-think about what that would look like and what an accurate heuristic would be.

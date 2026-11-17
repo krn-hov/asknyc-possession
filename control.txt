@@ -1,4 +1,0 @@
-this determines if the ball is in control of a player.
-is the ball relatively steady and moving with the player? 
-does the ball velocity drop a lot insinuating a player has control?
-if more than 1 team is present in the proximity zone then is the closest one successfully guarding it?

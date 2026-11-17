@@ -1,6 +1,0 @@
-first run the initial_points script
-then run the restart_points script
-then run the pass_sprint script
-then run the possession script with no classifier (if training needed)
-then train the classifier (if needed)
-then run the possession script with the classifier
