@@ -1,7 +1,7 @@
-"""The classifier (see KH/classifier.txt): guess possession on frames the rules cannot decide.
+"""The classifier: guess possession on frames the rules cannot decide.
 
-Where it fits (main.txt / possession_script.txt)
-------------------------------------------------
+Where it fits
+-------------
 The possession script first runs without a classifier. Frames it can decide (initial points,
 restarts, controlled frames, completed passes/sprints) get a label, and the rest stay
 unassigned, mostly frames where the ball is not tracked. Those decided frames are the
@@ -11,8 +11,8 @@ pass ("else f(t_n) = classifier(t_n)").
 Training labels never come from a human or from the ground truth. They are produced by our
 own algorithm, which RULES.md allows ("pseudo-labels produced by an algorithm").
 
-Models (classifier.txt: "either try a KNN or try training a decision tree")
----------------------------------------------------------------------------
+Models ("either try a KNN or try training a decision tree")
+-----------------------------------------------------------
 Both are implemented, chosen with --model:
   tree  DecisionTreeClassifier, depth-limited, with a minimum leaf size so it cannot memorise
         single frames, class-balanced, random_state fixed for reproducibility.
@@ -27,7 +27,7 @@ Barcelona always attack towards x = 105.3, so a zone means the same thing in bot
 
 1. Players per zone: 40 features. For each of Pep Guardiola's 20 zones (5 lanes x 4 bands,
    see tracking.pitch_zone), the number of home players and the number of away players in
-   it. This is classifier.txt's "use zone number instead of coordinates" and "how many home
+   it. This follows the plan's "use zone number instead of coordinates" and "how many home
    and away players are in each zone".
 2. Ball zone: 22 features. The zone of the last known ball position as a one-hot vector (20),
    the seconds since the ball was last tracked (capped at BALL_STALE_CAP_S), and whether it is

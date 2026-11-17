@@ -1,7 +1,7 @@
-"""Step 2 of the pipeline (see KH/restart.txt and KH/main.txt): restart points.
+"""Step 2 of the pipeline: restart points.
 
-Idea (from restart.txt)
------------------------
+Idea
+----
 "All frames that the ball is out of play and not an initial point are restart points. It could
 be because the ball is out of bounds or any referee stoppage, or during halftime, or before
 kick-off, or after the final whistle."

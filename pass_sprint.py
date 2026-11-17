@@ -1,7 +1,7 @@
-"""Step 3 of the pipeline (see KH/pass_sprint.txt and KH/main.txt): completed passes and sprints.
+"""Step 3 of the pipeline: completed passes and sprints.
 
-Idea (from pass_sprint.txt)
----------------------------
+Idea
+----
 While a team keeps the ball, there are moments when no player is controlling it: the ball is
 travelling between two teammates (a completed pass), or a player knocks it ahead and chases it
 (a sprint / carry). In both, the ball leaves the proximity zone of the team in possession,
@@ -13,7 +13,7 @@ Procedure
 1. Possession anchors. On every frame that is not a restart (restart.py), we take the team in
    control from control.py. Initial points (initial_points.py) are anchors too, with their
    known team, so the pass that takes a free kick or throw-in is also found. On the second
-   run of this step (main.txt), the anchors instead come from the possession script's output
+   run of this step, the anchors instead come from the possession script's output
    CSV (--possession), so gaps between the possessions it found are re-examined.
 2. Sandwiched gaps. A gap is a maximal run of frames with no anchor. Only gaps with the
    *same* team on both sides are considered (A ... gap ... A). A gap between different teams
@@ -46,7 +46,7 @@ Procedure
                of the carrier: knocked ahead, never given away
              * the gap lasts at most MAX_SPRINT_S (4 s)
 
-   carry   (an addition to pass_sprint.txt) the same player keeps the ball, at any speed, and
+   carry   (an addition to the original plan) the same player keeps the ball, at any speed, and
            whenever it is tracked it is within CLOSE_CARRY_DIST (2.5 m) of them. This is
            a slow dribble, or a player shielding the ball just outside the 1.5 m control
            zone. CHALLENGE.md lists "a player keeps the ball" as a sign of control.

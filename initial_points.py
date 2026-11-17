@@ -1,7 +1,7 @@
-"""Step 1 of the pipeline (see KH/initial_points.txt and KH/main.txt): initial points.
+"""Step 1 of the pipeline: initial points.
 
-Idea (from initial_points.txt)
-------------------------------
+Idea
+----
 Initial points are frames whose possession value we already know from the Smart Tagging. Every
 set piece (goal kick, corner kick, free kick, throw-in, kick-off at the start and kick-off after a
 goal) restarts play with a known team on the ball. Later steps (the possession script) start from

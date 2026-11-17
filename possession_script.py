@@ -1,4 +1,4 @@
-"""Step 4 of the pipeline (see KH/possession_script.txt and KH/main.txt): the possession script.
+"""Step 4 of the pipeline: the possession script.
 
 It walks through the match frame by frame and decides f(t), the possession at video frame t,
 from everything the earlier steps produced:
@@ -9,8 +9,8 @@ from everything the earlier steps produced:
     control.py          is a player controlling the ball, which team, who is nearest
     classifier.py       a guess for frames nothing else can decide (later runs only)
 
-The rules (possession_script.txt), applied in this order for each frame t
---------------------------------------------------------------------------
+The rules, applied in this order for each frame t
+-------------------------------------------------
     start with the first initial point frame (of each half)
     if t is a pass_sprint frame             -> f(t) = its pass_sprint team
     elif t is a restart frame                -> f(t) = 0 (neither team)
@@ -90,7 +90,7 @@ Usage (run from the KH folder, after initial_points, control, restart, pass_spri
     # same, one majority label per stretch of missing ball (stops H/A flicker)
     python possession_script.py --classifier tree --per-stretch
 
-main.py runs all of this in the order main.txt gives, and checks the final file's format.
+main.py runs all of this in order, and checks the final file's format.
 """
 
 import argparse

@@ -61,9 +61,8 @@ python <path-to>/more-than-a-hack-2027/evaluation/validate_submission.py solutio
 
 ## How it works
 
-The idea is written down, one file per step, in the `.txt` notes. Each `.py` file implements the
-`.txt` file of the same name and explains its own logic at the top. `main.py` runs them in the
-order `main.txt` gives:
+Each step is one `.py` file, which explains its own logic at the top. `main.py` runs them in this
+order:
 
 | # | Step | File | What it does |
 |---|---|---|---|
@@ -71,7 +70,7 @@ order `main.txt` gives:
 | 2 | Control | `control.py` | Is a player controlling the ball? A numpy version of the Vidal-Codina et al. (2022) method used by databallpy (1.5 m zone; the ball must change speed by >5 m/s or direction by >10°). Our own checks are added on top: the ball moving with the player, a sharp speed drop (a first touch), and the closest player guarding the ball against an opponent. |
 | 3 | Restarts | `restart.py` | Every frame where the ball is out of play: outside the halves, before kick-off, set-piece waits, the ball off the pitch (including the untracked frames just before it is seen outside), and untagged stoppages (players walking, nobody playing the ball). A goalkeeper holding the ball is *not* a stoppage, a stoppage ends at a tagged restart, and live slivers under 2 s between two stoppages are treated as dead. |
 | 4 | Pass / sprint | `pass_sprint.py` | Between two moments when the *same* team controls the ball, nobody controls it but possession has not changed. Decide whether the gap was a completed pass, a sprint/carry or a short touch, and give it to that team. |
-| 5 | Possession, first pass | `possession_script.py` | Walk frame by frame applying the rules in `possession_script.txt`. Possession only passes to the other team after it has controlled the ball for 0.5 s (back-dated to the gain), and ball dropouts under 2 s keep the last team. Longer dropouts stay unassigned. |
+| 5 | Possession, first pass | `possession_script.py` | Walk frame by frame applying the possession rules (listed at the top of the file). Possession only passes to the other team after it has controlled the ball for 0.5 s (back-dated to the gain), and ball dropouts under 2 s keep the last team. Longer dropouts stay unassigned. |
 | 6 | Classifier | `classifier.py` | Train a decision tree (or KNN) on the frames step 5 decided. Features are player counts in Pep Guardiola's 20 zones, the ball's last known zone, team velocities and active Smart Tagging phases. |
 | 7 | Possession with classifier | `possession_script.py` | The same walk, with the classifier filling the ball-missing frames (one majority label per stretch, so it doesn't flicker). Its submission file becomes the solution. |
 
@@ -97,9 +96,8 @@ format has only `H`/`A`/`D`/`X`, so:
 ├─ README.md               this file
 ├─ ASKNYC.md               the technical document
 ├─ parameters.md           every threshold, and the control / possession scenarios
-├─ main.py / main.txt      runs everything in order
-├─ *.txt                   the plan for each step, in plain words
-├─ *.py                    one implementation per .txt (+ tracking.py, shared)
+├─ main.py                 runs everything in order
+├─ *.py                    one file per step (+ tracking.py, shared)
 ├─ requirements.txt        pinned versions (numpy, pandas, scikit-learn)
 ├─ data/                   put the match data here (empty in git)
 ├─ solution/               main.py writes the solution here (ASKNYC.csv)

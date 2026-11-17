@@ -1,6 +1,6 @@
-"""The control function (see KH/control.txt): is the ball under a player's control at frame t?
+"""The control function: is the ball under a player's control at frame t?
 
-control.txt asks three questions:
+It asks three questions:
   1. Is the ball relatively steady and moving with the player?
   2. Does the ball's velocity drop sharply, suggesting a player has taken control of it?
   3. If more than one team is in the proximity zone, is the closest player successfully
@@ -9,7 +9,7 @@ control.txt asks three questions:
 Following the team's decision, this module re-implements the individual-player-possession
 algorithm of Vidal-Codina et al. (2022), "Automatic event detection in football using tracking
 data", in the form databallpy 0.8.1 uses it (databallpy/features/player_possession.py), with
-the same default parameters. The control.txt checks are then layered on top. Nothing is
+the same default parameters. Our own checks are then layered on top. Nothing is
 imported from databallpy. The code works directly on our 46-slot arrays from tracking.py.
 
 Step A: proximity zone (PZ). As in databallpy, for every frame the player nearest the ball is
@@ -31,7 +31,7 @@ Step B: Vidal-Codina gain validation (databallpy defaults). Consecutive frames w
     a long tracking dropout. databallpy has no such limit, and also ends possession one frame
     before the last PZ frame; we include that frame.
 
-Step C: the control.txt checks.
+Step C: our own checks.
     1. moving_with: the ball is in the PZ and its velocity matches the nearest player's
        velocity, |v_ball - v_player| <= REL_SPEED_MAX (3 m/s), as a median over a centred
        STEADY_WINDOW (7 frames, 0.28 s). This is a dribble or a ball at the player's feet.
@@ -49,13 +49,13 @@ Final rule, for each frame t with the ball visible:
                     moving_with or reception says they have the ball, otherwise nobody
     control(t)    = controller(t) exists AND guarded(t)
 Where the ball is missing, control(t) is False and ball_visible(t) is False. Callers (the
-possession script) treat those frames separately, as possession_script.txt specifies.
+possession script) treat those frames separately.
 
 Outputs
 -------
 compute_control(data) returns a dict of per-frame arrays. Running this file saves them to
 cache/control.npz. The keys:
-    control       bool   the answer to control.txt
+    control       bool   is a player controlling the ball
     team          int8   team in control (0 home, 1 away, -1 nobody)
     slot          int16  track slot in control (0-based, -1 nobody)
     nearest_slot  int16  nearest player to the ball (-1 if ball missing)

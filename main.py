@@ -1,8 +1,8 @@
-"""Run the whole possession pipeline (KH/main.txt) and write the solution CSV.
+"""Run the whole possession pipeline and write the solution CSV.
 
     python main.py
 
-main.txt, step by step, and what runs for each line:
+The plan, step by step, and what runs for each line:
 
     first run the initial_points script         -> initial_points.py
                                                    (+ control.py: the control function that
@@ -15,7 +15,7 @@ main.txt, step by step, and what runs for each line:
     then run the possession script with the
       classifier                                -> possession_script.py --classifier ...  -> out/final.csv
 
-main.txt originally ended with a second pass_sprint run and a second possession run. They
+The plan originally ended with a second pass_sprint run and a second possession run. They
 were removed: the second pass_sprint run found only ~30 new passes (the first run had already
 found ~450), and the final submission came out byte-identical with or without them. A pass
 between two possessions of the same team already gets that team when the loose frames are
@@ -30,8 +30,8 @@ the previous steps' files from cache/ and out/ and nothing is shared in memory.
 Options
 -------
     --model tree|knn     classifier to use (default tree)
-    --no-per-stretch     label missing-ball stretches frame by frame (classifier as written
-                         in possession_script.txt) instead of one majority label per stretch
+    --no-per-stretch     label missing-ball stretches frame by frame (classifier as originally
+                         planned) instead of one majority label per stretch
     --team NAME          solution file name (default ASKNYC -> solution/ASKNYC.csv)
     --fresh              delete cache/ and out/ first, so even the tracking is re-parsed
 """
