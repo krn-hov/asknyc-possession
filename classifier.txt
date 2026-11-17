@@ -1,0 +1,6 @@
+can either try a KNN or try training a decision tree using the assigned frames as test/train data.
+
+for features we can use player locations and velocities. 
+for location instead of coordinates we should split the field up into the 20 pitch zones Pep Guardiola uses (look online for it) and use zone number.
+also how many home and away players are in each zone.
+we can also use the smart tagging phases of play. 

@@ -1,0 +1,17 @@
+start with first initial point frame
+if f(t_n) is a pass_sprint frame then f(t_n) is its already given value
+if f(t_n) is a restart frame then f(t_n) is 0 (neither home or away)
+if f(t_n) ball is not missing and not an initial point
+    if f(t_n-1) is assigned a possession (home or away)
+        if control(t_n) = True then f(t_n) = f(t_n-1)
+        else f(t_n) = 0
+    if f(t_n-1) = 0
+        if the closest player to the ball is in proximity zone
+            if control(t_n) = True then f(t_n) is assigned possession to team of closest player
+            else f(t_n) = 0
+        else f(t_n) = 0
+else if f(t_n) is an initial point then f(t_n) is its already given value
+else if first pass then keep unassigned 
+else f(t_n) = classifier(t_n)
+
+proximity zone should be calculated how it is in the databallpy public Python library. 
